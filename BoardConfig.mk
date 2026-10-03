@@ -179,7 +179,7 @@ else
 endif
 
 AERA_USE_SERIALNO_PROPERTY_FOR_DEVICE_ID := true
-AERA_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko focaltech_3683g.ko focaltech_touch.ko goodix_core.ko goodix_ts.ko nxp-nci.ko qti_battery_charger.ko xiaomi_touch.ko icnss2.ko cnss_prealloc.ko cnss_utils.ko cnss_plat_ipc_qmi_svc.ko cnss_nl.ko wlan_firmware_service.ko cnss2.ko msm_kgsl.ko"
+AERA_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko focaltech_3683g.ko focaltech_touch.ko goodix_core.ko goodix_ts.ko nxp-nci.ko qti_battery_charger.ko xiaomi_touch.ko icnss2.ko cnss_prealloc.ko cnss_utils.ko cnss_plat_ipc_qmi_svc.ko cnss_nl.ko wlan_firmware_service.ko cnss2.ko msm_kgsl.ko frpc-adsprpc.ko audpkt_ion_dlkm.ko audio_pkt_dlkm.ko q6_dlkm.ko audio_prm_dlkm.ko pinctrl_lpi_dlkm.ko swr_dlkm.ko swr_ctrl_dlkm.ko wcd_core_dlkm.ko mbhc_dlkm.ko wcd9xxx_dlkm.ko stub_dlkm.ko aw882xx_dlkm.ko fs19xx_dlkm.ko machine_dlkm.ko lpass_cdc_wsa2_macro_dlkm.ko lpass_cdc_wsa_macro_dlkm.ko lpass_cdc_va_macro_dlkm.ko lpass_cdc_rx_macro_dlkm.ko lpass_cdc_tx_macro_dlkm.ko lpass_cdc_dlkm.ko lpass_bt_swr_dlkm.ko wsa884x_dlkm.ko wsa883x_dlkm.ko wcd937x_dlkm.ko wcd937x_slave_dlkm.ko wcd938x_dlkm.ko wcd938x_slave_dlkm.ko wcd9378_dlkm.ko wcd9378_slave_dlkm.ko swr_dmic_dlkm.ko wcd939x_dlkm.ko wcd939x_slave_dlkm.ko"
 AERA_POST_DECRYPT_MODULES := "rfkill.ko cfg80211.ko gsim.ko rmnet_mem.ko ipam.ko qca_cld3_qca6750.ko"
 AERA_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
 AERA_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone48/temp"

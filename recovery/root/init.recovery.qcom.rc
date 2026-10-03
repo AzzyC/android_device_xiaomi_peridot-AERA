@@ -75,18 +75,65 @@ service peridot-flashlight /system/bin/peridot_flashlight.sh
     group root
     seclabel u:r:recovery:s0
 
+service aera-pd-mapper /vendor/bin/aera-pd-mapper
+    class core
+    disabled
+    user system
+    group system
+    seclabel u:r:recovery:s0
+    setenv LD_LIBRARY_PATH /vendor/aera-stock-lib64:/vendor/lib64:/system/lib64
+    stdio_to_kmsg
+
+service aera-dspservice /vendor/bin/aera-dspservice
+    class hal
+    disabled
+    user system
+    group system wakelock 2908
+    capabilities BLOCK_SUSPEND
+    seclabel u:r:recovery:s0
+    setenv LD_LIBRARY_PATH /vendor/aera-stock-lib64:/vendor/lib64:/system/lib64
+    interface vendor.qti.hardware.dsp@1.0::IDspService dspservice
+    stdio_to_kmsg
+
+service aera-audioadsprpcd /vendor/bin/aera-audioadsprpcd audiopd
+    class main
+    disabled
+    user media
+    group media
+    seclabel u:r:recovery:s0
+    setenv LD_LIBRARY_PATH /vendor/aera-stock-lib64:/vendor/lib64:/system/lib64
+    stdio_to_kmsg
+
 on property:twrp.modules.loaded=true
+    write /dev/kmsg "[aera-audio] recovery modules loaded"
+
     # Mount firmware
     mkdir /firmware
     mount vfat /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} /firmware ro
+
+    exec -- /system/bin/aera_audio_bootstrap.sh
+
+    write /dev/kmsg "[aera-audio] starting pd-mapper"
+    start aera-pd-mapper
+
+    write /dev/kmsg "[aera-audio] starting dspservice"
+    start aera-dspservice
+
+    write /dev/kmsg "[aera-audio] starting AudioPD daemon"
+    start aera-audioadsprpcd
+
+    exec -- /system/bin/sh -c "sleep 1"
+
+    write /dev/kmsg "[aera-audio] booting ADSP"
+
     # Load ADSP firmware for PMIC
     wait /sys/kernel/boot_adsp/boot
     write /sys/kernel/boot_adsp/boot 1
+
     wait /sys/class/power_supply/battery
     start vendor.qseecomd
     start vendor.health-recovery
     start vibratorfeature-hal-service
-    umount /firmware
 
 on property:vendor.sys.listeners.registered=true
     start vendor.ssgtzd
