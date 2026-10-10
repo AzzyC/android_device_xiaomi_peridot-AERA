@@ -60,7 +60,7 @@ if [ "$AERA_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export AERA_USE_GREP_BINARY=1
 
 	# KernelSU / Magisk Support
-	# export AERA_DELETE_MAGISK_ADDON=1
+	export AERA_DELETE_MAGISK_ADDON=1
 	# export AERA_USE_SPECIFIC_MAGISK_ZIP="$(echo "$script_path"/prebuilt/Magisk*.zip)"
 	export AERA_MOVE_MAGISK_INSTALLER_TO_RAMDISK=1
 	export AERA_ENABLE_KERNELSU_SUPPORT=1
