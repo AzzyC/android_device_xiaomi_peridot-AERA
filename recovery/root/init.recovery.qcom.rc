@@ -151,7 +151,7 @@ service aera-audio-primary-opener /system/bin/aera-audio-primary-opener
     stdio_to_kmsg
 
 on property:twrp.modules.loaded=true
-    wait /sys/class/power_supply/battery
+    wait /sys/class/power_supply/battery 2
     start vendor.qseecomd
     start vendor.health-recovery
     start vibratorfeature-hal-service

@@ -136,7 +136,7 @@ mapper_pid() {
     echo "${value}"
 }
 PID="$(mapper_pid)" || fail "cannot identify one mapper process"
-sleep 1
+sleep 0.5
 [ "$(getprop init.svc.aera-pd-mapper)" = running ] || fail "mapper exited during startup"
 [ "$(mapper_pid)" = "${PID}" ] || fail "mapper restarted during startup"
 [ "$(readlink /proc/${PID}/exe)" = "${MAPPER}" ] || fail "unexpected mapper executable"
