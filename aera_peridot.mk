@@ -113,3 +113,6 @@ AERA_ENABLE_WLAN := 1
 
 # Only ship root-provider modules for the device's Android kernel version
 AERA_ROOT_MODULE_KERNELS := 6.1
+
+# Expand the XZ-compressed runtime in RAM during early init
+AERA_USE_EXTREME_COMPRESSION := 1
